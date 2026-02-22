@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="styles.css">
     <!-- 
     =======================================================================
-    EDITABLE CONTENT GUIDE
+    EDITABLE CONTENT GUIDE (Terminal Theme v2)
     =======================================================================
     Find the sections below to update your content:
     - [HERO]         : Name, Tagline, One-liner
     - [ABOUT]        : Bio & Focus
-    - [PROJECTS]     : List of projects
-    - [SYSTEMS]      : Systems to automate
+    - [PROJECTS]     : List of projects (in .card divs)
+    - [SYSTEMS]      : Checkbox list of automation goals
     - [EXPERIENCE]   : Work history
     - [CONTACT]      : Links & Resume
     =======================================================================
@@ -21,136 +21,161 @@
 </head>
 <body>
 
-    <div class="terminal-window">
-        <!-- Terminal Header -->
-        <header class="terminal-header">
-            <div class="window-controls">
-                <div class="control close"></div>
-                <div class="control minimize"></div>
-                <div class="control maximize"></div>
-            </div>
-            <div class="window-title">jerryzhou.ai — zsh</div>
-        </header>
-
-        <!-- Main Content -->
-        <main class="terminal-body">
-            
-            <!-- Navigation -->
-            <nav class="nav-bar">
-                <a href="#about" class="nav-link">about</a>
-                <a href="#projects" class="nav-link">projects</a>
-                <a href="#systems" class="nav-link">systems</a>
-                <a href="#experience" class="nav-link">experience</a>
-                <a href="#contact" class="nav-link">contact</a>
-                <a href="resume.pdf" class="nav-link" target="_blank">resume.pdf</a>
-            </nav>
-
-            <!-- [HERO] Section -->
-            <section class="hero">
-                <div class="prompt-line">
-                    <span class="prompt-user">jerry@jerryzhou.ai:~$</span>
-                    <span class="prompt-cmd">whoami</span>
-                </div>
-                <h1 class="hero-name">Jerry Zhou</h1>
-                <div class="hero-tagline">Operator. Builder. Friction Reducer.</div>
-                <div class="hero-sub">I build practical systems that reduce real-world friction.</div>
-            </section>
-
-            <!-- [ABOUT] Section -->
-            <section id="about" class="section">
-                <div class="prompt-line">
-                    <span class="prompt-user">jerry@jerryzhou.ai:~$</span>
-                    <span class="prompt-cmd">cat about.md</span>
-                </div>
-                <div class="content-block">
-                    <p><strong>By day:</strong> Program Manager @ UCLA Health (Audiovisual Services)</p>
-                    <p><strong>By night:</strong> building AI systems that automate real-world cost decisions.</p>
-                    <p><strong>Focus:</strong> Energy optimization, capital efficiency, automation.</p>
-                </div>
-            </section>
-
-            <!-- [PROJECTS] Section -->
-            <section id="projects" class="section">
-                <div class="prompt-line">
-                    <span class="prompt-user">jerry@jerryzhou.ai:~$</span>
-                    <span class="prompt-cmd">ls -la ./projects/</span>
-                </div>
-                
-                <div class="project-item">
-                    <span class="project-title">1. Powerwall AI Planner</span>
-                    <div class="project-desc">Daily plan engine for solar + battery optimization. Explainable decisions, minimal manual intervention.</div>
-                    <div class="tech-stack">Stack: Tesla Fleet API + forecasts + rule/LLM planner</div>
-                </div>
-
-                <div class="project-item">
-                    <span class="project-title">2. Real Estate Analyzer</span>
-                    <div class="project-desc">Cashflow + risk modeling toolkit. Turns properties into numbers before emotions.</div>
-                </div>
-
-                <div class="project-item">
-                    <span class="project-title">3. Loan Structuring Toolkit</span>
-                    <div class="project-desc">Interest scenario simulation engine.</div>
-                </div>
-
-                <div class="project-item">
-                    <span class="project-title">4. Micro Experiments</span>
-                    <div class="project-desc">Tiny utilities solving oddly specific problems.</div>
-                </div>
-            </section>
-
-            <!-- [SYSTEMS] Section -->
-            <section id="systems" class="section">
-                <div class="prompt-line">
-                    <span class="prompt-user">jerry@jerryzhou.ai:~$</span>
-                    <span class="prompt-cmd">tail -f systems_to_automate.log</span>
-                </div>
-                <ul class="contact-list">
-                    <li>[ ] Electricity bill decisions</li>
-                    <li>[ ] Rental cashflow tracking</li>
-                    <li>[ ] Loan modeling</li>
-                    <li>[ ] Calendar fatigue</li>
-                    <li>[ ] Repetitive thinking</li>
-                    <li>[ ] Eventually: myself</li>
-                </ul>
-            </section>
-
-            <!-- [EXPERIENCE] Section -->
-            <section id="experience" class="section">
-                <div class="prompt-line">
-                    <span class="prompt-user">jerry@jerryzhou.ai:~$</span>
-                    <span class="prompt-cmd">history | grep work</span>
-                </div>
-                <div class="exp-item">
-                    <span class="exp-title">UCLA Health — Program Manager, Audiovisual Services</span>
-                    <div class="exp-desc">Designing and standardizing AV systems across healthcare facilities. Coordinating vendors, infrastructure, and real-world constraints.</div>
-                    <div class="tech-stack">Skills: systems thinking, technical integration, vendor negotiation, turning chaos into frameworks</div>
-                </div>
-            </section>
-
-            <!-- [CONTACT] Section -->
-            <section id="contact" class="section">
-                <div class="prompt-line">
-                    <span class="prompt-user">jerry@jerryzhou.ai:~$</span>
-                    <span class="prompt-cmd">./contact.sh</span>
-                </div>
-                <ul class="contact-list">
-                    <li>Email: <a href="mailto:hello@jerryzhou.ai">hello@jerryzhou.ai</a></li>
-                    <li>LinkedIn: <a href="#">linkedin.com/in/jerryzhou</a></li>
-                    <li>GitHub: <a href="#">github.com/jerrychou2007</a></li>
-                </ul>
-                <div class="hero-sub" style="margin-top: 20px;">"Open to interesting problems."<span class="cursor"></span></div>
-            </section>
-
-            <!-- Resume Link (Cmd style) -->
-            <section class="section">
-                 <div class="prompt-line">
-                    <span class="prompt-user">jerry@jerryzhou.ai:~$</span>
-                    <span class="prompt-cmd"><a href="resume.pdf" target="_blank" style="color: inherit; border: none;">open resume.pdf</a></span>
-                </div>
-            </section>
-
-        </main>
+<div class="wrap">
+  <div class="terminal">
+    <!-- Mac Header -->
+    <div class="term-head">
+      <div class="dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <div class="term-title">jerryzhou.ai — zsh</div>
     </div>
+
+    <div class="term-body scanlines">
+      <!-- [HERO] -->
+      <h1 class="h1">Jerry Zhou</h1>
+      <p class="tagline">Operator. Builder. Friction Reducer.</p>
+      <p class="kicker">I build practical systems that reduce real-world friction.</p>
+
+      <!-- Navigation -->
+      <ul class="nav">
+        <li><a href="#about"><span class="cmd">cat</span> about.md</a></li>
+        <li><a href="#projects"><span class="cmd">ls</span> projects/</a></li>
+        <li><a href="#systems"><span class="cmd">tail</span> systems.log</a></li>
+        <li><a href="#experience"><span class="cmd">history</span></a></li>
+        <li><a href="#contact"><span class="cmd">./</span>contact.sh</a></li>
+        <li><a href="resume.pdf" target="_blank" rel="noopener"><span class="cmd">open</span> resume.pdf</a></li>
+      </ul>
+
+      <!-- [ABOUT] -->
+      <div class="section" id="about">
+        <p class="prompt"><b>jerry</b>@jerryzhou.ai:~$ cat about.md</p>
+        <div class="hr"></div>
+        <div class="content-block">
+          <p><strong>By day:</strong> Program Manager @ UCLA Health (Audiovisual Services)</p>
+          <p><strong>By night:</strong> building AI systems that automate real-world cost decisions.</p>
+          <p><strong>Focus:</strong> Energy optimization, capital efficiency, automation.</p>
+        </div>
+      </div>
+
+      <!-- [PROJECTS] -->
+      <div class="section" id="projects">
+        <p class="prompt"><b>jerry</b>@jerryzhou.ai:~$ ls -la ./projects/</p>
+        <div class="hr"></div>
+
+        <div class="grid">
+          <!-- Project 1 -->
+          <div class="card">
+            <div class="card-title">
+              <span class="name">Powerwall AI Planner</span>
+              <span class="badge">active</span>
+            </div>
+            <ul>
+              <li>Daily plan engine for solar + battery optimization</li>
+              <li>Explainable decisions, minimal manual intervention</li>
+              <li>Stack: Tesla Fleet API + forecasts + rule/LLM planner</li>
+            </ul>
+            <div class="links">
+              <a href="#" class="link-blue">demo</a>
+              <a href="#" class="link-violet">repo</a>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="card">
+            <div class="card-title">
+              <span class="name">Real Estate Analyzer</span>
+              <span class="badge">tool</span>
+            </div>
+            <ul>
+              <li>Cashflow + risk modeling toolkit</li>
+              <li>Turns properties into numbers before emotions</li>
+            </ul>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="card">
+            <div class="card-title">
+              <span class="name">Loan Structuring Toolkit</span>
+              <span class="badge">sim</span>
+            </div>
+            <ul>
+              <li>Interest scenario simulation engine</li>
+            </ul>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="card">
+            <div class="card-title">
+              <span class="name">Micro Experiments</span>
+              <span class="badge">misc</span>
+            </div>
+            <ul>
+              <li>Tiny utilities solving oddly specific problems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- [SYSTEMS] -->
+      <div class="section" id="systems">
+        <p class="prompt"><b>jerry</b>@jerryzhou.ai:~$ tail -f systems_to_automate.log</p>
+        <div class="hr"></div>
+        <ul class="todo">
+          <li><div class="chk"></div> Electricity bill decisions</li>
+          <li><div class="chk"></div> Rental cashflow tracking</li>
+          <li><div class="chk"></div> Loan modeling</li>
+          <li><div class="chk"></div> Calendar fatigue</li>
+          <li><div class="chk"></div> Repetitive thinking</li>
+          <li><div class="chk"></div> Eventually: myself</li>
+        </ul>
+      </div>
+
+      <!-- [EXPERIENCE] -->
+      <div class="section" id="experience">
+        <p class="prompt"><b>jerry</b>@jerryzhou.ai:~$ history | grep work</p>
+        <div class="hr"></div>
+        <div class="card">
+            <div class="card-title">
+              <span class="name">UCLA Health</span>
+              <span class="badge">Program Manager</span>
+            </div>
+            <div class="content-block" style="margin-bottom:0; font-size: 0.95rem;">
+                <p>Designing and standardizing AV systems across healthcare facilities. Coordinating vendors, infrastructure, and real-world constraints.</p>
+                <p style="color:var(--faint); font-size: 0.85rem;">Skills: systems thinking, technical integration, vendor negotiation, turning chaos into frameworks</p>
+            </div>
+        </div>
+      </div>
+
+      <!-- [CONTACT] -->
+      <div class="section" id="contact">
+        <p class="prompt"><b>jerry</b>@jerryzhou.ai:~$ ./contact.sh</p>
+        <div class="hr"></div>
+        
+        <div class="content-block">
+            <p>Line: "Open to interesting problems."</p>
+            <ul class="todo">
+                <li><span style="color:var(--accent);">➜</span> Email: <a href="mailto:hello@jerryzhou.ai">hello@jerryzhou.ai</a></li>
+                <li><span style="color:var(--accent);">➜</span> LinkedIn: <a href="#" target="_blank">linkedin.com/in/jerryzhou</a></li>
+                <li><span style="color:var(--accent);">➜</span> GitHub: <a href="#" target="_blank">github.com/jerrychou2007</a></li>
+            </ul>
+        </div>
+
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">
+          <span class="arrow">➜</span> open resume.pdf
+        </a>
+
+        <div class="footer">
+            <span>© <script>document.write(new Date().getFullYear())</script> Jerry Zhou</span>
+            <span>Status: <span style="color: var(--accent);">online</span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
