@@ -8,8 +8,8 @@
   <meta name="description" content="我是 Jerry Zhou 周洁瑞，住在洛杉矶，在 UCLA Health 从事视听系统项目管理。这里分享我的房产经营、投资研究与技术实践，也欢迎请教交流与项目合作。">
   <link rel="canonical" href="https://jerryzhou.ai/">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="styles.css?v=20260928">
-  <script src="site.js?v=20260928" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260928-social">
+  <script src="site.js?v=20260928-social" defer></script>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jerryzhou.ai/">
   <meta property="og:title" content="Jerry Zhou 周洁瑞 | 从亲身实践说起">
@@ -19,7 +19,7 @@
   <meta property="og:locale" content="zh_CN">
   <meta name="twitter:card" content="summary">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Person","name":"Jerry Zhou","alternateName":"周洁瑞","url":"https://jerryzhou.ai/","image":"https://jerryzhou.ai/assets/jerry-zhou.jpeg","jobTitle":"Program Manager, Audiovisual Services","homeLocation":{"@type":"City","name":"Los Angeles"},"sameAs":["https://www.linkedin.com/in/jerry-zhou-43b51242/","https://github.com/jerrychou2007","https://www.superlinear.academy/u/5a9569a6"]}
+  {"@context":"https://schema.org","@type":"Person","name":"Jerry Zhou","alternateName":"周洁瑞","url":"https://jerryzhou.ai/","image":"https://jerryzhou.ai/assets/jerry-zhou.jpeg","jobTitle":"Program Manager, Audiovisual Services","homeLocation":{"@type":"City","name":"Los Angeles"},"sameAs":["https://www.linkedin.com/in/jerry-zhou-43b51242/","https://github.com/jerrychou2007","https://www.instagram.com/jerryzhouu/","https://www.superlinear.academy/u/5a9569a6"]}
   </script>
 </head>
 <body data-contact-email="">
@@ -46,7 +46,7 @@
           <a class="button button-primary" href="https://www.linkedin.com/in/jerry-zhou-43b51242/" target="_blank" rel="noopener noreferrer" data-email="general">和我聊聊 <span aria-hidden="true">↗</span></a>
           <a class="text-link" href="#writing">先读几篇文章 <span aria-hidden="true">↓</span></a>
         </div>
-        <p class="hero-footnote">LinkedIn 联系 · 请教问题 · 项目合作</p>
+        <p class="hero-footnote">也可以通过 <a href="https://www.instagram.com/jerryzhouu/" target="_blank" rel="noopener noreferrer">Instagram</a> 或 <a href="#wechat-contact">微信</a> 联系我</p>
       </div>
       <figure class="portrait">
         <div class="portrait-mat"><img src="assets/jerry-zhou.jpeg" alt="Jerry Zhou 周洁瑞，微笑着拿着话筒" width="300" height="300" fetchpriority="high" decoding="async"></div>
@@ -70,6 +70,8 @@
         <p>技术和 AI 是我整理信息、建立工具的方法。这里分享适合公开的实践与复盘，希望让抽象的商业概念，变成可以理解的具体问题。</p>
         <div class="profile-links" id="exp">
           <a href="https://www.linkedin.com/in/jerry-zhou-43b51242/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a href="https://www.instagram.com/jerryzhouu/" target="_blank" rel="noopener noreferrer">Instagram @jerryzhouu <span aria-hidden="true">↗</span></a>
+          <a href="#wechat-contact">微信 jerryjoo <span aria-hidden="true">↓</span></a>
           <a href="https://github.com/jerrychou2007" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
           <a href="https://www.superlinear.academy/c/say-hello/3a30c1" target="_blank" rel="noopener noreferrer">社区自我介绍 <span aria-hidden="true">↗</span></a>
         </div>
@@ -117,11 +119,17 @@
         <p class="contact-prompt" id="contact-prompt" aria-live="polite">简单说说你是谁、想聊什么就好。</p>
         <div class="contact-actions">
           <a class="button button-primary" id="contact-mail" href="https://www.linkedin.com/in/jerry-zhou-43b51242/" target="_blank" rel="noopener noreferrer">在 LinkedIn 联系我 <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="https://www.instagram.com/jerryzhouu/" target="_blank" rel="noopener noreferrer">Instagram @jerryzhouu <span aria-hidden="true">↗</span></a>
           <div class="email-copy" id="email-copy" hidden><label class="sr-only" for="contact-email">联系邮箱，可选中复制</label><input id="contact-email" value="" type="text" readonly spellcheck="false" autocomplete="off"><button id="copy-email" type="button" hidden>复制邮箱</button></div>
         </div>
         <p class="copy-status" id="copy-status" role="status"></p>
-        <p class="other-contact">中文或 English 都可以。欢迎通过 LinkedIn 发消息或添加联系。</p>
-        <noscript><p class="other-contact">欢迎请教交流、探讨项目合作或邀请分享。点击上方按钮，在 LinkedIn 上找到我。</p></noscript>
+        <div class="wechat-contact" id="wechat-contact">
+          <div class="wechat-row"><label for="wechat-id">微信</label><input id="wechat-id" value="jerryjoo" type="text" readonly spellcheck="false" autocomplete="off" aria-describedby="wechat-help"><button id="copy-wechat" type="button" hidden>复制微信号</button></div>
+          <p class="wechat-help" id="wechat-help">在微信“添加朋友”中搜索这个微信号，备注从个人网站来即可。</p>
+          <p class="copy-status" id="wechat-copy-status" role="status"></p>
+        </div>
+        <p class="other-contact">LinkedIn、Instagram 或微信，选你方便的方式。中文或 English 都可以。</p>
+        <noscript><p class="other-contact">欢迎请教交流、探讨项目合作或邀请分享。点击上方社交主页链接，或复制微信号添加朋友即可联系。</p></noscript>
       </div>
     </section>
   </main>

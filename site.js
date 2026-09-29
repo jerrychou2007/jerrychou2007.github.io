@@ -54,5 +54,20 @@
       copyStatus.textContent = '邮箱已选中，可以手动复制。';
     }
   });
+  const wechatButton = document.getElementById('copy-wechat');
+  const wechatField = document.getElementById('wechat-id');
+  const wechatStatus = document.getElementById('wechat-copy-status');
+  wechatButton.hidden = false;
+  wechatButton.addEventListener('click', async () => {
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(wechatField.value);
+      wechatStatus.textContent = '微信号已复制，请在微信里添加朋友。';
+    } catch (_) {
+      wechatField.focus();
+      wechatField.select();
+      wechatStatus.textContent = '微信号已选中，可以手动复制。';
+    }
+  });
   document.getElementById('year').textContent = String(new Date().getFullYear());
 })();
