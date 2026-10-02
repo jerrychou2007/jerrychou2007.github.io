@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8f6ef">
+<title>为什么我花了 80 小时写的代码，最后亲手删了它 | Jerry Zhou</title>
+<meta name="description" content="一次从房产财务出发的工具尝试，以及我为什么决定停下来。">
+<link rel="canonical" href="https://jerryzhou.ai/blog/why-i-stopped-after-80-hours/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="stylesheet" href="/styles.css?v=20260928-ucla">
+<link rel="stylesheet" href="/blog.css?v=20261002-blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么我花了 80 小时写的代码，最后亲手删了它">
+<meta property="og:description" content="一次从房产财务出发的工具尝试，以及我为什么决定停下来。">
+<meta property="og:url" content="https://jerryzhou.ai/blog/why-i-stopped-after-80-hours/">
+<meta property="og:image" content="https://jerryzhou.ai/assets/jerry-zhou.jpeg">
+<meta property="og:locale" content="zh_CN"><meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "为什么我花了 80 小时写的代码，最后亲手删了它", "description": "一次从房产财务出发的工具尝试，以及我为什么决定停下来。", "author": {"@type": "Person", "name": "Jerry Zhou", "url": "https://jerryzhou.ai/"}, "url": "https://jerryzhou.ai/blog/why-i-stopped-after-80-hours/", "mainEntityOfPage": "https://jerryzhou.ai/blog/why-i-stopped-after-80-hours/", "isBasedOn": "https://www.superlinear.academy/c/main/80-4a1cce", "inLanguage": "zh-CN"}</script>
+</head><body class="blog-page">
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="/">Jerry Zhou<span>周洁瑞</span></a>
+<nav aria-label="主要导航"><a href="/">首页</a><a href="/blog/" aria-current="page">文章</a><a href="/#about">关于我</a><a class="nav-contact" href="/#contact">联系与合作 <span aria-hidden="true">↗</span></a></nav>
+</div></header>
+<main id="main" class="post-wrap">
+<a class="back-link" href="/blog/">← 全部文章</a>
+<article aria-labelledby="post-title">
+<header class="post-header">
+<p class="eyebrow">AI 与工具 / NOTES FROM PRACTICE</p>
+<h1 id="post-title">为什么我花了 80 小时写的代码，最后亲手删了它</h1>
+<p class="post-source">原文首发于 <a href="https://www.superlinear.academy/c/main/80-4a1cce" target="_blank" rel="noopener noreferrer">Superlinear Academy <span aria-hidden="true">↗</span></a></p>
+<div class="post-meta"><a class="post-author" href="/#about"><img src="/assets/jerry-zhou.jpeg" width="32" height="32" alt="">Jerry Zhou 周洁瑞</a><span>原平台标注：Jan 11</span><span>本站收录 <time datetime="2026-10-02">2026-10-02</time></span></div>
+<p class="archive-note">本文保留原文表达，依据 2026 年 7 月 18 日保存的正文存档转载。原页面日期标注为 Jan 11，年份尚未核实。</p>
+</header>
+<details class="post-toc"><summary>文章目录</summary><ol><li class="toc-level-2"><a href="#section-1">0️⃣ 引子｜为什么我花了 80 小时写的代码，最后决定删了它</a></li>
+<li class="toc-level-2"><a href="#section-2">1️⃣ 初心｜我只是想看懂我 6 处物业的财务状况</a></li>
+<li class="toc-level-2"><a href="#section-3">2️⃣ 为什么 Cursor 让我以为“这次不一样”</a></li>
+<li class="toc-level-2"><a href="#section-4">3️⃣ 第一次失控：宽度陷阱 “我想建一座大厦，却忘了我只需要一间暖房。”</a></li>
+<li class="toc-level-2"><a href="#section-5">4️⃣ 收缩｜我决定只做一件事：从税表里拿数据</a></li>
+<li class="toc-level-2"><a href="#section-6">5️⃣ 奇招与代价｜总统的税表与狂转的风扇</a></li>
+<li class="toc-level-2"><a href="#section-7">6️⃣ 我以为我在优化，其实我已经开始失控</a></li>
+<li class="toc-level-2"><a href="#section-8">5️⃣ 第二次失控：深度泥潭 “当 AI 的进化速度超过了开发者的理解速度。”</a></li>
+<li class="toc-level-2"><a href="#section-9">7️⃣ 刹车｜我为什么选择停下来</a></li>
+<li class="toc-level-2"><a href="#section-10">8️⃣ 尾声｜弃坑之后，我反而更会用 AI 了</a></li></ol></details>
+<div id="post-body" class="prose"><p>一篇文章，记录一次用 Cursor 做软件开发的经历。</p>
+<h2 id="section-1">0️⃣ 引子｜为什么我花了 80 小时写的代码，最后决定删了它</h2>
+<p>在新年假期和圣诞假期的这两三个星期里，我进行了一次可以说是人生最疯狂的软件开发。</p>
+<p>我先大概把课代表的AI Builder课程都过了一遍，然后一步一步学习怎么设置 Cursor、注册Github、了解它最基本的应用。那时候我觉得自己不是在写代码，而是在指挥一支军队。Cursor 让我产生了一种错觉：只要我有想法，AI 就能帮我填平所有技术鸿沟。我觉得我手握最先进的武器，任何复杂的财务逻辑都只是几行 Prompt 的事。</p>
+<p>但事实是，我是一个彻头彻尾的编程小白。我从来没有写过代码，也没有做过任何的软件开发工作。但是在这段时间的高强度Vibe coding之后，我最终做了一个决定：把我手头这个正在用 Cursor 开发的项目先停下来。不是因为写不动了，而是我需要停下来想一想，我到底想做什么？</p>
+<p>以及，我现在的能力边界和我想达到的目标边界的交界线，究竟在哪里？</p>
+<h2 id="section-2">1️⃣ 初心｜我只是想看懂我 6 处物业的财务状况</h2>
+<p>其实我一开始的初心非常简单。</p>
+<p>我的副业是在做房地产投资，我管理着大概有 6 处物业。问题不在于我没有数据(我有一个Google sheet)，而在于我一直没有办法非常清楚地直观看懂这些物业的整体财务状况。</p>
+<p>市面上的一些网站、工具、App 我都试过，它们功能很全，但对我来说并不好用，反而变成了一件更繁琐、更费脑力的事情。我想要的并不是一个很复杂的系统，而是一个能让我快速看明白的工具，我的整体现金流到底怎么样，这些物业整体是赚还是不赚，ROI和Cap Rate大概处在什么区间，以及每一年的财务历史变化。</p>
+<h2 id="section-3">2️⃣ 为什么 Cursor 让我以为“这次不一样”</h2>
+<p>我的本职工作是做 Audiovisual 的产品应用和系统设计，但说实话，我对 Coding 从来没有亲自下过手，也并不真正懂底层技术和架构。但这一次不一样的地方在于，很多技术实现并不是我写出来的，而是 Cursor + AI 帮我一步一步写出来推出来的。直到现在，我其实也说不清楚 Cursor 在后台到底帮我做了什么。我并不是在逐行理解代码，而是在不断做判断：这件事值不值得继续做？这是不是一个高价值目标？这一步是不是已经开始变复杂了？现在停下来会不会更理性？</p>
+<p>某种程度上，我靠的不是技术能力，而是一种产品直觉。通过这次尝试，我深刻意识到：AI 和 Cursor 拉高了普通人做软件的下限，但真正决定一个产品能走多远的，是产品思维和架构的上限。 以前我觉得程序员最厉害的是写代码，现在发现，最厉害的是知道“什么功能不该写”。</p>
+<h2 id="section-4">3️⃣ 第一次失控：宽度陷阱 “我想建一座大厦，却忘了我只需要一间暖房。”</h2>
+<p>一开始，我想做的是一个房地产信息汇总和分析的工具。但真正开始动手之后，我才发现事情远比我想象中复杂。很多非常细碎的东西，其实都需要人工参与：银行数据, 对账单, 各种 invoice,手动输入。 而实际上，我并不需要每个月都做非常精细的分析。对我来说，一年 review 一次整体的资产健康状况，已经足够了。</p>
+<p>问题是我在不知不觉中，把这个产品的“宽度”拉得越来越大。其中一个非常具体的转折点，是我第一次开始认真地“建数据库”。我人生第一次建SQLite 数据库，开始建表、建字段、建关系，再往上加各种我觉得“以后肯定用得上”的项目。我甚至还开始给数据做可视化，建图表、想结构，恨不得把我能想到的所有东西，甚至可以让AI来做数据分析和预测，我想把这些东西全都塞进这个系统里。当时我心里其实有一种很强烈的感觉，反正我有 Cursor，也有各路 AI，那这些复杂度，迟早都能被解决。随着这些东西一点一点堆起来，我也开始注意到一些很细微但不太对劲的变化。</p>
+<p>项目里的文件夹越来越多，Cursor 开始变得有点“失控”，好像什么都想帮我一起做。那时候我脑子里第一次冒出了一个以前从来没想过的念头：这些东西，以后要怎么维护？虽然当下每一步看起来都还能往前走，但我已经隐约感觉到，我开始在为一个“未来的自己”制造负担了。Cursor 给了我无限的砖块，但我如果不学会怎么设计图纸，只会盖出一座自己都进不去的迷宫。 我卡住的地方不是技术，而是作为一个小白，还没有学会定义产品的“宽度”。</p>
+<h2 id="section-5">4️⃣ 收缩｜我决定只做一件事：从税表里拿数据</h2>
+<p>在意识到这一点之后，我停下来重新想了一下。我发现，其实我并不需要把所有数据都整合进来。对我来说，最快、最直接、也最权威的年度数据来源，就是每年的Tax Return-Schedule E本身。也正是在这一步，我对自己有了一个更清晰的认知。说实话，哪怕是税表，我其实也看不太懂。对我来说，税表就是一行一行的数字，中间通过各种加减，最后变成了另外一个数字。我并不知道中间每一步具体在算什么，但我默认它是一个已经被验证过、可以被信任的最终结果。也正因为这样，我才意识到一件事：我没有必要强迫自己看懂所有过程，我只是想拿到一个可靠、可复用的年度结果。理论上，我完全可以手工把税表里的数字填进表格里，花不了太多时间。但当时我的想法是既然我已经有 AI，也有 Cursor，为什么不能让AI来处理我本来就不太需要理解的那一部分？理想状态是我只需要把税表 PDF 拖进一个文件夹，剩下的事情交给工具自己完成。其实在这一步，我中间还做过一次非常明确的降级。</p>
+<p>一开始我的目标并不大，我只是想把 Schedule E 上面的房产信息提取出来就好。但真正开始做的时候，我发现自己并不是卡在房产逻辑上，而是卡在了结构化数据本身。我慢慢意识到，这个系统的整体复杂度，已经远远超过了“只为了提取几行房产数据”这件事本身。那一刻我很清楚地知道，是时候给这个项目的 scope 瘦身 了。我决定先把 PDF 数据中 Schedule E 的房产信息单独拎出来，当成一个小而美且可行的产品，先跑完一轮完整的开发闭环。但在真正开始写需求的时候，我又冒出了另一个念头。既然税表本身我已经有了，为什么只提取房产信息？如果能把整个税表的信息都结构化出来，做成一个 一年只需要用一次、用来 review 个人财务状况的小工具，好像反而是一个更干净、也更通用的目标。</p>
+<h2 id="section-6">5️⃣ 奇招与代价｜总统的税表与狂转的风扇</h2>
+<p>很快，我又遇到了一个新的问题。当我试图把一份带有我真实名字的税表拖进对话框时，我的手指在鼠标上停住了几秒。那种感觉很奇怪，虽然我知道它是 AI，但我总觉得我正在把我的的‘财务裸体’交给一个云端的黑盒。正是这种本能的警惕，把我逼向了本地部署那条充满坑的苦路。税表上有大量非常敏感的信息：身份信息、家庭住址、银行信息、信用卡信息等等。我并不放心也不应该把这些东西直接交给商用的云端 AI。在做了一些 research，也和不同 AI agent 反复聊过之后，我得出的结论是：在安全这件事上，没有真正完美的捷径。于是，我只能选择先提取PDF数据，给敏感数据脱敏，结构化数据，再用本地大模型。但在部署本地模型前，我还得解决一个更加尴尬的问题，我上哪去找税表当测试数据？不保证百分百安全的情况下，我肯定不愿意用我自己的税表来跑。于是我想到了一个奇招：历届美国总统和候选人为了展示透明度，经常会向公众公开他们的税务信息。这对我来说简直是一个完美的 Database，奥巴马和特朗普可能没想到，他们的税表竟然成了我测试本地模型的小白鼠。当时我的逻辑非常简单：最好的测试库不在别处，就在特朗普总统公开的税表里。他那么多物业，如果他的税表都能跑通，我这点生活数据自然也就通了。 看着这些大人物的财务逻辑在我的本地1.5b模型里被艰难地解析，那种感觉确实挺奇妙的。</p>
+<p>一开始，我直接上了 Llama 3 :7b模型。然后，我年迈的笔记本用最直接的方式表达了抗议。风扇几乎是一直在狂转，屏幕上没有任何让我安心的反馈，我甚至分不清它是卡死了还是在思考，还是我的代码有问题。那一刻，风扇的轰鸣声是我和物理世界唯一的连接，提醒我 AI 也不是凭空变出来的魔法。它让我意识到，没有顶级算力的支持，再聪明的 AI 也不过是纸上谈兵。 它需要实打实的算力支撑，而我的老伙计显然已经快要咳出血来了。后来我才意识到，它跑Llama 3 :7b的性能大概只有 0.2 tokens/s，慢到不像是在生成内容，更像是在一点一点往前爬。那一刻我第一次非常清楚地意识到，这已经不是“我会不会用”的问题了，而是我正在正面撞上一条非常明确的算力物理边界。为了让事情至少还能往前走，我只能一路把模型往下调：7B → 更小 → 更小……最终，我停在了可怜的Qwen 2.5:1.5b 上。这并不是一个我愿意做的选择，而是在当下条件下，唯一还能让系统继续运转的选择，也意味着我后面有可能要做更多系统性优化的工作。</p>
+<p>在这个过程中，我甚至找了好几路不同的 AI，一起帮我看问题。更像是一场“AI联合会诊”。最后得出的结论并不是我哪里做错了，而是：在这台老笔记本上，7B 这个级别，本来就不现实。更绝望的是，我一开始甚至不知道该怎么判断它“有没有在跑”。网上有人提到可以看tokens/s，但我并不知道怎么把这个指标准确测出来。最后我只能用 Cursor 手搓一些简单的测试方式，自己反复跑，对比冷启动和热启动的区别。直到那一刻我才确认：哦，它不是卡死了，只是慢得让我分不清它是不是还活着。</p>
+<h2 id="section-7">6️⃣ 我以为我在优化，其实我已经开始失控</h2>
+<p>在 AI 的建议下，因为安全性的考量，我开始采用 rule-based extraction。先用正则把 60%–80% 的信息提取出来，再用 AI 去验证关键字段，者修补 OCR 特别容易出错的地方。我开始写各种测试工具、回归脚本，做golden dataset，对比每一次修改之后准确率的变化。说实话，到后来我已经说不清楚自己到底在改什么了。我只记得自己开始对一些看起来很确定、但其实没什么证据的数字变得格外警惕。也开始怀疑一些数字本身没错，但放在上下文里总觉得不太对的结果。很多改动，并不是我真正理解了，而只是直觉告诉我：这样看起来更安全。我原本以为有了 AI 就能 “一键解决” ，最后发现，真正的自动化是从 “手搓正则规则” 开始的。不要指望 AI 能像神谕一样直接给出答案，要先用规则量出框架，再让 AI 填补那些规则量不到的缝隙。 我用了 80 个小时明白了一个道理，在对安全性要求高的项目上：用规则锁定关键数据，AI 不是用来逃避繁琐的，它是用来验证逻辑的。</p>
+<h2 id="section-8">5️⃣ 第二次失控：深度泥潭 “当 AI 的进化速度超过了开发者的理解速度。”</h2>
+<p>慢慢地，我意识到一件事，后面每一点点准确率的提升，都需要成倍的复杂度作为代价，在那段最挣扎的时间里，我陷入了PDF提取，OCR优化，结构化数据和Rule-based提取回归测试的死循环。讽刺的是，当我拿着那些长达几十行的匹配规则询问不同的 AI 时，它们竟然全都异口同声地鼓励我：“你走在正确的道路上，现在的逻辑很严密，但还不到引入 AI 增强的时候。”但在那个深夜，我盯着屏幕，隐隐约约感觉到自己撞上了一堵无形的墙。我的直觉告诉我，如果再这么抠细节抠下去，我不是在写程序，而是在编织一张把自己困住的网。我突然觉得现在是时候引入AI 了，尽管所有的 AI 都在建议我继续人工死磕。记得有一个晚上，我临睡前最后跑了一次自动化回归脚本，让它整晚去跑那些复杂的测试逻辑。第二天一早，当我再次唤醒电脑，屏幕亮起，我看到 Cursor 弹出一大堆我其实并不是很能理解的代码逻辑，并用一种极其冷静的语气向我建议下一步该如何继续优化。那一刻，我没有感到兴奋，反而有一种强烈的疏离感。我盯着屏幕意识到：我好像正在被 AI 拽着，把一个原本只用来解决我自己问题的小工具，强行推向一个连自己都快看不懂的复杂系统。我真的需要钻得这么深吗？我好像进了一个老鼠洞，我已经不再是在 “把功能做出来” ，而是在 “把一个已经能用的东西做得让自己有点陌生” 。直到某一刻我突然意识到，我好像正在把一个原本只用来解决我自己问题的小工具，一步一步推成了一个 需要长期维护的系统。这也是我第一次认真问自己，这件事情，还值不值得继续做下去？</p>
+<h2 id="section-9">7️⃣ 刹车｜我为什么选择停下来</h2>
+<p>决定停下来的那个下午，我盯着屏幕上已经写好的那不知道多少行“屎山“代码，心里其实一直在纠结。我想着这消失的 80 个小时，想着那些还没填上的坑，甚至有一点点不甘心。但我突然停下来问了自己一个问题：我当初折腾这些，到底是想做一个税表解析专家，还是想做一个轻松房东？这个问题跳出来的时候，答案其实已经呼之欲出了。虽然这个项目还有很多地方没有完全填完，但我现在已经开始深刻怀疑它真正的价值。其实现在很多现代税表本身是有文本层的，并不需要这么复杂的 OCR 或规则，直接交给 AI 处理反而更简单。我现在做的这套东西，更适合的是那些年代比较久远、没有文本层的税表扫描件。我大概花了 60–80 个小时学习和Cursor写代码。但我发现，我已经没有办法再从产品的角度严谨判断：我应该做多宽，或者做多深。我不是做不下去，而是我意识到，这已经不再是我最初想解决的问题了。</p>
+<h2 id="section-10">8️⃣ 尾声｜弃坑之后，我反而更会用 AI 了</h2>
+<p>这个产品可能永远不会上线，但我并不觉得这段时间是浪费的。有些项目存在的意义不是为了发布，而是为了让你学会如何下一个开始。</p>
+<p>在这个过程中，我学会了如何更有边界地使用 AI。这 80 个小时的意义，在于让我拥有了用 “Builder思维” 去拆解生活痛点的底气。 我决定先把税表解析的项目放一放，因为我又发现了一个新的痛点：我们家装了太阳能系统和 Tesla Powerwall，而且我还有一辆电车。在南加州，根据天气变化来估算发电量并决定用电策略，是一件非常繁琐的事。以前我每天都要在特斯拉 App 和天气预报之间来回切换，自己做模糊的估算。这一次我还是会用 AI，但我定了一个死规矩：只解决当下的痛点，不预支未来的复杂度。如果 Cursor 建议我手搓一个复杂的机器学习天气预测算法，我会先问自己： “手动查一下天气预报是不是只要几秒钟？调用一个现成的 API 是不是更快？” 。</p>
+<p>从想做一个很厉害的系统到想解决生活中的一个小痛点，这是我这个假期最疯狂也最理性的进步。 我意识到 AI 降低了写代码的门槛，却提高了对人类领航员判断力的要求。如果你不知道要在哪里停下来，AI 真的会带你冲向深渊。</p>
+<p>对我而言，AI 提升的不只是生产力，更是那种既然生活有痛点痒点，我可以亲手改掉它的幸福感。 税表项目暂时封存，但它成了我开启对生活不断优化梦想的入场券。</p></div>
+<footer class="post-end"><p>原文来源：<a href="https://www.superlinear.academy/c/main/80-4a1cce" target="_blank" rel="noopener noreferrer">Superlinear Academy</a> · 作者 Jerry Zhou</p><a href="#post-title">回到文章顶部 ↑</a></footer>
+</article>
+<aside class="post-contact" aria-labelledby="post-contact-title"><p class="eyebrow">LET’S TALK</p><h2 id="post-contact-title">想继续聊这个话题？</h2><p>有自己的经历、一个具体问题，或想探讨相关项目，都欢迎联系我。</p><div class="post-contact-links"><a class="button button-primary" href="/#contact">联系与合作 <span aria-hidden="true">↗</span></a><a href="https://www.instagram.com/jerryzhouu/" target="_blank" rel="noopener noreferrer">Instagram @jerryzhouu ↗</a><a href="/#wechat-contact">微信 jerryjoo ↗</a></div></aside>
+<a class="next-post" href="/blog/us-real-estate-investing/"><span>继续阅读</span><strong>抛砖引玉 - 浅谈美国房地产投资（一）</strong><span aria-hidden="true">→</span></a>
+</main>
+<footer class="container site-footer"><div><a class="footer-brand" href="/">Jerry Zhou</a><span>洛杉矶 · 实践与思考</span></div><p>这里分享个人经验，不代表所在机构。<br>历史文章保留写作时的观点，不构成税务、法律或投资建议。</p><span class="copyright">© 2026 Jerry Zhou</span></footer>
+</body></html>
