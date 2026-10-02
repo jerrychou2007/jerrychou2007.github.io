@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the static blog using Python's standard library.
 
-The source format supports paragraphs, Markdown headings and simple lists.
+The source format supports paragraphs, headings, lists, HTTPS links, local PNG images and YouTube embeds.
 All other text is escaped verbatim; no raw HTML, plugins or network access.
 """
 import argparse
@@ -9,10 +9,22 @@ from html import escape
 import json
 from pathlib import Path
 import re
+import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://jerryzhou.ai'
-STYLE_VERSION = '20261002-blog'
+STYLE_VERSION = '20261002-blog-media'
+
+
+def inline_text(text):
+    parts = []
+    previous = 0
+    for match in re.finditer(r'\[([^\]]+)\]\((https://[^\s)]+)\)', text):
+        parts.append(escape(text[previous:match.start()]))
+        parts.append(f'<a href="{escape(match.group(2), quote=True)}" target="_blank" rel="noopener noreferrer">{escape(match.group(1))}</a>')
+        previous = match.end()
+    parts.append(escape(text[previous:]))
+    return ''.join(parts)
 
 
 def render_body(source):
@@ -21,6 +33,8 @@ def render_body(source):
     active_list = None
     for block in blocks:
         heading = re.fullmatch(r'(#{2,3}) (.+)', block)
+        picture = re.fullmatch(r'!\[([^\]]*)\]\((/assets/[A-Za-z0-9/_-]+\.png)\)', block)
+        video = re.fullmatch(r'\[视频：([^\]]+)\]\(https://www\.youtube\.com/watch\?v=([A-Za-z0-9_-]{11})\)', block)
         ordered = re.fullmatch(r'(\d+)\.\s+(.+)', block)
         unordered = re.fullmatch(r'-\s+(.+)', block)
         list_type = 'ol' if ordered else 'ul' if unordered else None
@@ -33,6 +47,16 @@ def render_body(source):
                 active_list = list_type
             text = ordered.group(2) if ordered else unordered.group(1)
             output.append(f'<li>{escape(text)}</li>')
+        elif picture:
+            alt, url = picture.groups()
+            data = (ROOT / url.lstrip('/')).read_bytes()
+            if not data.startswith(b'\x89PNG\r\n\x1a\n'):
+                raise ValueError('Expected a local PNG image: ' + url)
+            width, height = struct.unpack('>II', data[16:24])
+            output.append(f'<figure class="article-figure" style="max-width:{width}px"><a href="{url}" target="_blank" rel="noopener noreferrer" aria-label="查看大图：{escape(alt, quote=True)}"><img src="{url}" alt="{escape(alt, quote=True)}" width="{width}" height="{height}" loading="lazy" decoding="async"></a><figcaption>原文配图 · 点击查看大图</figcaption></figure>')
+        elif video:
+            title, video_id = video.groups()
+            output.append(f'<figure class="article-video"><div class="video-frame"><iframe src="https://www.youtube.com/embed/{video_id}?rel=0" title="{escape(title, quote=True)}" width="560" height="315" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><figcaption>原文视频 · <a href="https://www.youtube.com/watch?v={video_id}" target="_blank" rel="noopener noreferrer">{escape(title)} · 在 YouTube 观看 ↗</a></figcaption></figure>')
         elif heading:
             level = len(heading.group(1))
             text = heading.group(2)
@@ -40,7 +64,7 @@ def render_body(source):
             output.append(f'<h{level} id="{anchor}">{escape(text)}</h{level}>')
             headings.append((anchor, text, level))
         else:
-            output.append(f'<p>{escape(block).replace(chr(10), "<br>")}</p>')
+            output.append(f'<p>{inline_text(block).replace(chr(10), "<br>")}</p>')
     if active_list:
         output.append(f'</{active_list}>')
     return '\n'.join(output), headings
