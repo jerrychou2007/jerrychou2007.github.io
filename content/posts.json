@@ -17,9 +17,11 @@
     "category": "AI 与工具",
     "description": "一次从房产财务出发的工具尝试，以及我为什么决定停下来。",
     "source_url": "https://www.superlinear.academy/c/main/80-4a1cce",
-    "published_date": null,
-    "original_date_label": "原平台标注：Jan 11",
+    "published_date": "2026-01-11",
+    "original_date_label": "2026-01-11",
     "body_file": "why-i-stopped-after-80-hours.md",
-    "republished_date": "2026-10-02"
+    "republished_date": "2026-10-02",
+    "source_verified_date": "2026-11-11",
+    "updated_date": "2026-11-11"
   }
 ]

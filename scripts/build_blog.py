@@ -138,6 +138,8 @@ def article(post, other):
     schema = {'@context': 'https://schema.org', '@type': 'BlogPosting', 'headline': post['title'], 'description': post['description'], 'author': {'@type': 'Person', 'name': 'Jerry Zhou', 'url': BASE + '/'}, 'url': BASE + path, 'mainEntityOfPage': BASE + path, 'isBasedOn': post['source_url'], 'inLanguage': 'zh-CN'}
     if post.get('published_date'):
         schema['datePublished'] = post['published_date']
+    if post.get('updated_date'):
+        schema['dateModified'] = post['updated_date']
     return document(post['title'], post['description'], path, content, schema)
 
 
@@ -157,8 +159,10 @@ def outputs():
     result = {Path('blog/index.html'): index(posts)}
     for i, post in enumerate(posts):
         result[Path('blog') / post['slug'] / 'index.html'] = article(post, posts[1 - i])
-    urls = ['/', '/blog/'] + ['/blog/' + p['slug'] + '/' for p in posts]
-    result[Path('sitemap.xml')] = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(f'<url><loc>{BASE}{url}</loc><lastmod>2026-10-02</lastmod></url>' for url in urls) + '\n</urlset>\n'
+    latest_update = max(p.get('updated_date', p['republished_date']) for p in posts)
+    url_dates = {'/': latest_update, '/blog/': latest_update}
+    url_dates.update({'/blog/' + p['slug'] + '/': p.get('updated_date', p['republished_date']) for p in posts})
+    result[Path('sitemap.xml')] = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(f'<url><loc>{BASE}{url}</loc><lastmod>{modified}</lastmod></url>' for url, modified in url_dates.items()) + '\n</urlset>\n'
     return result
 
 
