@@ -127,7 +127,6 @@ def article(post, other):
 <h1 id="post-title">{escape(post['title'])}</h1>
 <p class="post-source">原文首发于 <a href="{escape(post['source_url'], quote=True)}" target="_blank" rel="noopener noreferrer">Superlinear Academy <span aria-hidden="true">↗</span></a></p>
 <div class="post-meta"><a class="post-author" href="/#about"><img src="/assets/jerry-zhou.jpeg" width="32" height="32" alt="">Jerry Zhou 周洁瑞</a><span>{source_date(post)}</span><span>本站收录 <time datetime="{post['republished_date']}">{post['republished_date']}</time></span></div>
-<p class="archive-note">{escape(post['archive_note'])}</p>
 </header>
 <details class="post-toc"><summary>文章目录</summary><ol>{toc}</ol></details>
 <div id="post-body" class="prose">{body}</div>
